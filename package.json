@@ -1,0 +1,17 @@
+{
+  "name": "water-reminder",
+  "version": "1.0.0",
+  "description": "Automated water reminder system that sends reminders to Google Chat from 10:00 AM to 6:00 PM IST",
+  "main": "sendReminder.js",
+  "scripts": {
+    "start": "node sendReminder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3"
+  }
+}

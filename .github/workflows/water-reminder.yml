@@ -1,0 +1,32 @@
+name: Water Reminder
+
+on:
+  schedule:
+    # Runs every hour from 4:30 AM to 12:30 PM UTC (10:00 AM to 6:00 PM IST)
+    # IST is UTC+5:30, so 10 AM IST = 4:30 AM UTC
+    - cron: '30 4,5,6,7,8,9,10,11,12 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Send water reminder
+        env:
+          GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+        run: node sendReminder.js
